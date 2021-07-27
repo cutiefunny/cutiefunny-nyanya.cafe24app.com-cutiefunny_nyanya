@@ -1,0 +1,25 @@
+html 
+    head 
+        title=title 
+    body
+        select(id="sbx_userID")
+        br
+        input(type="text" value="" id="ib_search")
+        input(type="hidden" value="" id="ib_search_backup")
+        br
+        button(onClick="search()" id="btn_search") search
+        |
+        button(onClick="insert()" id="btn_insert") insert
+        |
+        button(onClick="del()" id="btn_delete") delete
+        p
+        select(id="sbx_collections")
+            option(value="whiteList") whiteList
+            option(value="userList") userList
+            option(value="tags") tags
+        br
+        select(id="lbx_whiteList" style="overflow:hidden" onClick="selectWhiteList()" onDblClick="showUserInsta()")
+
+        
+        script(src="/script/index.js")
+        script(src="//code.jquery.com/jquery-1.11.0.min.js")
