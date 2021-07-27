@@ -76,12 +76,14 @@ async function searchData(req,col,userID){
     if(col=="whiteList") users = await userList.find({ name: {$regex:req} }).toArray();
     else if(col=="userList") users = await userList.find({ user: {$regex:req} }).toArray();
     else if(col=="tags") users = await userList.find({ tag: {$regex:req}, user : userID }).sort({seq:1}).toArray();
+    else if(col=="filterWord") users = await userList.find({ filterWord: {$regex:req} }).toArray();
 
     var list = [];
     users.forEach(element => {
       if(col=="whiteList" && !list.includes(element.name)) list.push(element.name);
       else if(col=="userList" && !list.includes(element.user)) list.push(element.user);
       else if(col=="tags" && !list.includes(element.tag)) list.push(element.tag);
+      else if(col=="filterWord" && !list.includes(element.filterWord)) list.push(element.filterWord);
     });
     return list;
 }
@@ -119,6 +121,9 @@ async function insertData(req,col,userID){
     console.log(seq[0].seq);
     filter = { tag : req, user : userID };
     doc = { $set: { seq : seq[0].seq+1, tag : req, user : userID } };
+  }else if(col=="filterWord"){
+    filter = {filterWord:req};
+    doc = { $set: { filterWord : req } };
   }
   userList.updateOne(filter,doc,{upsert:true});
   //userList.insertOne(doc);
@@ -134,6 +139,7 @@ async function delData(req,col,userID){
   if(col=="whiteList") doc = { name : req };
   else if(col=="userList") doc = { user : req };
   else if(col=="tags") doc = { tag : req, user : userID };
+  else if(col=="filterWord") doc = { filterWord : req };
   userList.deleteOne(doc);
 
   return req;
