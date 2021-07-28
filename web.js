@@ -1,6 +1,6 @@
 //#region 초반 선언부
 const express = require('express');
-const port = 3000;
+const port = 8001;
 const log = console.log;
 
 const bodyparser= require('body-parser');
@@ -26,7 +26,7 @@ const client = new MongoClient(uri);
 client.connect();
 
 app.listen(port, ()=>{
-    console.log('3000번 포트에 대기중!')
+    console.log('8001번 포트에 대기중!')
 })
 console.log("server started");
 
