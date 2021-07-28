@@ -31,7 +31,7 @@ app.listen(port, ()=>{
 console.log("server started");
 
 app.get('/', function (req, res) {
-    res.render('index', { title: 'Hey'
+    res.render('index', { title: 'macro manager'
                         , message: 'Hello there!'
                         , message2: 'test'
                     });
@@ -86,22 +86,6 @@ async function searchData(req,col,userID){
       else if(col=="filterWord" && !list.includes(element.filterWord)) list.push(element.filterWord);
     });
     return list;
-}
-
-async function getData2(req){
-
-  var database = client.db("macroDB");
-  var userList = database.collection("history");
-  users = await userList.find({ userName: {$regex:req} }).toArray();
-
-  var list = [];
-  users.forEach(element => {
-    if(!list.includes(element.contents.split('#')[0])) {
-      var strArray = element.contents.split('#');
-      list.push(strArray[0]);
-    }
-  });
-  return list;
 }
 
 async function insertData(req,col,userID){

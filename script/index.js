@@ -15,9 +15,6 @@ function selectWhiteList(){ ib_search.value = $("#lbx_whiteList option:selected"
 //리스트 더블클릭
 function showUserInsta(){ window.open("http://instagram.com/"+$("#lbx_whiteList option:selected").text()); }
 
-//셀렉트박스에서 콜렉션 선택
-function selectCollection(){ alert($("#sbx_collections option:selected").text()) }
-
 //CRUD
 function search(){ callAjax("R") }
 function insert(){ callAjax("C") }
