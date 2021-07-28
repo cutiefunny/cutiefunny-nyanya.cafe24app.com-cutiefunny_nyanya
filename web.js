@@ -11,6 +11,7 @@ app.use(bodyparser.urlencoded({extended:false}))
 app.use(bodyparser.json())
 //app.set('view engine', 'ejs');
 app.set('view engine', 'pug');
+app.set('views', __dirname + '/views');
 //app.engine('html', require('ejs').renderFile);
 
 app.use('/script',express.static(__dirname + "/script"));
